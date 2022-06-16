@@ -33,7 +33,7 @@ public class BM {
                 e++; //La posición actual en el texto avanza en 1.
             } else {
                 int i = tablaD1.get(texto[d - 1]); //Variable auxiliar con el avance según la Tabla D1.
-                if (i == 0 || e <= d + i) {
+                if (e >= d + i) {
                     e++; //Si la siguiente posición en el texto no es mayor, la posición actual en el texto avanza en 1.
                 } else {
                     e = d + i; ////La posición actual en el texto avanza según la Tabla D1.
