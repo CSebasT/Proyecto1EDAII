@@ -1,19 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 
-/**
- *
- * @author USER
- */
+import grp7.metodosDeBusqueda.*;
+import java.util.Arrays;
+
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        System.out.println("Hola mundo");
+
+        
+        
+        
+        
+        
+        //Ejemplo de uso para el paquete grp7.metodosDeBusqueda.*
+        char[] texto = "AAFMOFEDMSDABABACAADOANROAABABACA".toCharArray();
+        char[] patron = "ABABACA".toCharArray();
+        System.out.println(BM.buscarCoincidenciasBM(texto, patron));
+        System.out.println(BM.calcularTablaD1(texto, patron));
+        System.out.println(BF.buscarCoincidenciasBF(texto, patron));
+        System.out.println(KMP.buscarCoincidenciasKMP(texto, patron));
+        System.out.println(Arrays.toString(KMP.calcularFuncionFallo(patron)));
+        
     }
-    
+
 }
