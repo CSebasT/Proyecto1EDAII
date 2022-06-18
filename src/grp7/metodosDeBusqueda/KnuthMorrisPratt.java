@@ -3,12 +3,17 @@ package grp7.metodosDeBusqueda;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class KMP {
+public class KnuthMorrisPratt extends Algoritmo {
 
-    /*
-    ** Método para buscar las coincidencias de un patrón en un texto dado, mediante KMP
-     */
-    public static ArrayList<Integer> buscarCoincidenciasKMP(char[] texto, char[] patron) {
+    public KnuthMorrisPratt() {
+        this.nombre = "KMP";
+    }
+
+    @Override
+    public ArrayList<Integer> resolver(char[] texto, char[] patron) {
+        /*
+        ** Método para buscar las coincidencias de un patrón en un texto dado, mediante KMP
+         */
         int longitudDelTexto = texto.length;
         int longitudDelPatron = patron.length;
         ArrayList<Integer> posicionesCoincidencias = new ArrayList<>(); //Estructura con posiciónes de las coincidencias encontradas.

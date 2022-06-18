@@ -2,12 +2,18 @@ package grp7.metodosDeBusqueda;
 
 import java.util.ArrayList;
 
-public class BF {
+public class FuerzaBruta extends Algoritmo {
 
     /*
-    ** Método para buscar las coincidencias de un patrón en un texto dado, mediante BF
+    ** Método para buscar las coincidencias de un patrón en un texto dado, mediante Fuerza Bruta
      */
-    public static ArrayList<Integer> buscarCoincidenciasBF(char[] texto, char[] patron) {
+    public FuerzaBruta() {
+        super();
+        this.nombre = "Fuerza Bruta";
+    }
+
+    @Override
+    public ArrayList<Integer> resolver(char[] texto, char[] patron) {
         int longitudDelTexto = texto.length;
         int longitudDelPatron = patron.length;
 

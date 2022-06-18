@@ -1,15 +1,19 @@
 package grp7.metodosDeBusqueda;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
-public class BM {
+public class BoyerMoore extends Algoritmo {
 
-    /*
-    ** Método para buscar las coincidencias de un patrón en un texto dado, mediante BM
-     */
-    public static ArrayList<Integer> buscarCoincidenciasBM(char[] texto, char[] patron) {
+    public BoyerMoore() {
+        this.nombre = "Boyer Moore";
+    }
+
+    @Override
+    public ArrayList<Integer> resolver(char[] texto, char[] patron) {
+        /*
+        ** Método para buscar las coincidencias de un patrón en un texto dado, mediante BM
+        */
         int longitudDelTexto = texto.length;
         int longitudDelPatron = patron.length;
 
