@@ -3,7 +3,7 @@ package grp7.metodosDeBusqueda;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class KnuthMorrisPratt extends Algoritmo {
+public class KnuthMorrisPratt extends AlgoritmoDeCoindicencias {
 
     public KnuthMorrisPratt() {
         this.nombre = "KMP";

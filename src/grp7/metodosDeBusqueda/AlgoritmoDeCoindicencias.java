@@ -2,14 +2,9 @@ package grp7.metodosDeBusqueda;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author rnbp
- */
-public abstract class Algoritmo {
-
+public abstract class AlgoritmoDeCoindicencias {
     String nombre;
-
+    
     public abstract ArrayList<Integer> resolver(char[] texto, char[] patron);
 
     public String getNombre() {

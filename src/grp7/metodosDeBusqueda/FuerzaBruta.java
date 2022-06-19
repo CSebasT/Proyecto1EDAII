@@ -2,7 +2,7 @@ package grp7.metodosDeBusqueda;
 
 import java.util.ArrayList;
 
-public class FuerzaBruta extends Algoritmo {
+public class FuerzaBruta extends AlgoritmoDeCoindicencias {
 
     /*
     ** Método para buscar las coincidencias de un patrón en un texto dado, mediante Fuerza Bruta

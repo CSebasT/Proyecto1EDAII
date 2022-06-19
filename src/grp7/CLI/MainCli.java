@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main_cli {
+public class MainCli {
 
     public static void main(String[] args) {
         int opcion = 0;
@@ -45,14 +45,6 @@ public class Main_cli {
                 }
             }
         }
-        //Ejemplo de uso para el paquete grp7.metodosDeBusqueda.*
-        /*char[] texto = "AAFMOFEDMSDABABACAADOANROAABABACA".toCharArray();
-        char[] patron = "ABABACA".toCharArray();
-        System.out.println(BM.buscarCoincidenciasBM(texto, patron));
-        System.out.println(BM.calcularTablaD1(texto, patron));
-        System.out.println(BF.buscarCoincidenciasBF(texto, patron));
-        System.out.println(KMP.buscarCoincidenciasKMP(texto, patron));
-        System.out.println(Arrays.toString(KMP.calcularFuncionFallo(patron)));*/
     }
 
     public static void buscarPatron(int opcionAlgoritmo) {
@@ -63,7 +55,7 @@ public class Main_cli {
         ArrayList<ArrayList<Integer>> arrayPosiciones = new ArrayList<>();
         ArrayList<char[]> patronBuscado = new ArrayList<>();
         ArrayList<char[]> patrones = leerPatrones();
-        Algoritmo algoritmo;
+        AlgoritmoDeCoindicencias algoritmo;
         switch (opcionAlgoritmo) {
             case 1:
                 algoritmo = new FuerzaBruta();

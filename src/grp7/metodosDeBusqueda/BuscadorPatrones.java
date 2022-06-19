@@ -3,20 +3,16 @@ package grp7.metodosDeBusqueda;
 import java.util.List;
 import java.util.ArrayList;
 
-/**
- *
- * @author rnbp
- */
 public class BuscadorPatrones {
 
-    public ArrayList<Resultado> getResultado(Algoritmo algoritmo, String text, List<String> patrones) {
+    public ArrayList<Resultado> getResultado(List<AlgoritmoDeCoindicencias> algoritmos, String texto, String patron) {
         int totalCoincidencias, indexLinea;
         double tiempoInicial, tiempo;
         char[] lineaChars, patronChars;
         String resultado, coincidencias;
-        String[] lineas = text.split("\r?\n|\r");
+        String[] lineas = texto.split("\r?\n|\r");
         ArrayList<Resultado> resultados = new ArrayList<>();
-        for (String patron : patrones) {
+        for (AlgoritmoDeCoindicencias algoritmo : algoritmos) {
             tiempo = 0;
             indexLinea = 0;
             totalCoincidencias = 0;
@@ -36,7 +32,7 @@ public class BuscadorPatrones {
                     }
                 }
             }
-            resultado = "Para el algoritmo " + algoritmo + " con el patron " + patron + " se encontraron " + totalCoincidencias + " coincidencias y la búsqueda tomó " +String.format("%.4f",tiempo)+ " milisegundos. " + coincidencias;
+            resultado = "Para el algoritmo " + algoritmo + " con el patron \"" + patron + "\" se encontraron " + totalCoincidencias + " coincidencias y la búsqueda tomó " +String.format("%.4f",tiempo)+ " milisegundos. " + coincidencias;
             resultados.add(new Resultado(algoritmo.getNombre(), resultado, patron, tiempo));
         }
         return resultados;

@@ -3,7 +3,7 @@ package grp7.metodosDeBusqueda;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BoyerMoore extends Algoritmo {
+public class BoyerMoore extends AlgoritmoDeCoindicencias {
 
     public BoyerMoore() {
         this.nombre = "Boyer Moore";

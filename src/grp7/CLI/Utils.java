@@ -10,10 +10,6 @@ import java.io.BufferedReader;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author rnbp
- */
 public class Utils {
 
     public static ArrayList<char[]> leerPatrones() {

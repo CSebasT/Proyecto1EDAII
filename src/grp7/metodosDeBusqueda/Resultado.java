@@ -5,7 +5,7 @@ public class Resultado implements Comparable<Resultado> {
     double tiempoEjecucion;
     String resultado;
     String patron;
-    String algoritmo;
+    String nombreAlgoritmo;
 
     public Resultado(){};
     
@@ -13,7 +13,7 @@ public class Resultado implements Comparable<Resultado> {
         this.tiempoEjecucion = tiempoEjecucion;
         this.resultado = resultado;
         this.patron = patron;
-        this.algoritmo = algoritmo;
+        this.nombreAlgoritmo = algoritmo;
     }
 
     public double getTiempoEjecucion() {
@@ -25,7 +25,7 @@ public class Resultado implements Comparable<Resultado> {
     }
 
     public String getAlgoritmo() {
-        return algoritmo;
+        return nombreAlgoritmo;
     }
     
     public String getResultado() {
@@ -39,7 +39,7 @@ public class Resultado implements Comparable<Resultado> {
     
     @Override
     public String toString() {
-        return "Para buscar el patrón "+patron+" el mejor algoritmo fue "+algoritmo+".";
+        return "Para buscar el patrón \""+patron+"\" el mejor algoritmo fue "+nombreAlgoritmo+".";
     }
 
 }
