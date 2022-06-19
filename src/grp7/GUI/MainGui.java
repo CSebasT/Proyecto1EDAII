@@ -1,24 +1,29 @@
 package grp7.GUI;
 
+import grp7.archivosJSON.CargadorArchivosJSON;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import java.nio.charset.StandardCharsets;
 
 import grp7.metodosDeBusqueda.*;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 public class MainGui extends javax.swing.JFrame {
+
     DefaultListModel patrones = new DefaultListModel();
     BuscadorPatrones buscador = new BuscadorPatrones();
-    
+    CargadorArchivosJSON cargadorArchivosJSON = new CargadorArchivosJSON();
+
     /**
      * Creates new form home
      */
@@ -168,7 +173,7 @@ public class MainGui extends javax.swing.JFrame {
         btnCargarPatrones.setText("Cargar Patrones");
         btnCargarPatrones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargarPatronesDeArchivo(evt);
+                cargarArchivoPatrones(evt);
             }
         });
 
@@ -291,15 +296,19 @@ public class MainGui extends javax.swing.JFrame {
         JFileChooser selectorArchivo = new JFileChooser();
         int elegir = selectorArchivo.showOpenDialog(this);
         if (elegir == JFileChooser.APPROVE_OPTION) {
-            File archivo = selectorArchivo.getSelectedFile();
-            try (FileReader fr = new FileReader(archivo)) {
+            try {
+                File archivo = selectorArchivo.getSelectedFile();
                 String texto = "";
-                int valor = fr.read();
-                while (valor != -1) {
-                    texto = texto + (char) valor;
-                    valor = fr.read();
+                FileInputStream fis = new FileInputStream(archivo);
+                //Mediante el InputStreamReader s leen archivos en codificación UTF-8 (incluye caracteres no ASCII).
+                InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(isr);
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    texto += linea + "\n";
                 }
                 txaTextInput.setText(texto);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -336,13 +345,34 @@ public class MainGui extends javax.swing.JFrame {
         txaTextInput.setText("");
     }//GEN-LAST:event_limpiarTexto
 
-    private void cargarPatronesDeArchivo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPatronesDeArchivo
+    private void cargarArchivoPatrones(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarArchivoPatrones
         JFileChooser selectorArchivo = new JFileChooser();
         int elegir = selectorArchivo.showOpenDialog(this);
         if (elegir == JFileChooser.APPROVE_OPTION) {
-            File archivo = selectorArchivo.getSelectedFile();
-            try (FileReader fr = new FileReader(archivo)) {
-                BufferedReader br = new BufferedReader(fr);
+            try {
+                File archivo = selectorArchivo.getSelectedFile();
+                //Comprueba la extensión del archivo.
+                String nombreArchivo = archivo.getName();
+                String extension = "";
+                int i = nombreArchivo.lastIndexOf('.');
+                if (i > 0) {
+                    extension = nombreArchivo.substring(i + 1);
+                }
+                //Si el archivo es JSON se tendrá un procesamiento diferente.
+                if (extension.equals("json")) {
+                    ArrayList<String> arregloPatrones = cargadorArchivosJSON.cargarArchivoPatronesJSON(archivo);
+                    if (arregloPatrones != null) {
+                        for (String patron : arregloPatrones) {
+                            patrones.addElement(patron);
+                        }
+                        return;
+                    }
+                }
+                //Procesamiento para cualquier otro tipo de archivo.
+                FileInputStream fis = new FileInputStream(archivo);
+                //Mediante el InputStreamReader s leen archivos en codificación UTF-8.
+                InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(isr);
                 String valor;
                 while ((valor = br.readLine()) != null) {
                     patrones.addElement(valor);
@@ -351,7 +381,7 @@ public class MainGui extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_cargarPatronesDeArchivo
+    }//GEN-LAST:event_cargarArchivoPatrones
 
     private void reiniciarListaPatrones(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciarListaPatrones
         patrones.removeAllElements();

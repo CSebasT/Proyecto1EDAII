@@ -1,0 +1,11 @@
+{   "arregloPatrones":[{
+    "patron" : "puerta"
+  },
+
+  { "patron" : "tarjeta"
+  },
+
+  { "patron" : "señalada"
+  }
+]
+}
