@@ -36,7 +36,10 @@ public class BoyerMoore extends AlgoritmoDeCoindicencias {
                 posicionesCoincidencias.add(e - longitudDelPatron);
                 e++; //La posición actual en el texto avanza en 1.
             } else {
-                int i = tablaD1.get(texto[d - 1]); //Variable auxiliar con el avance según la Tabla D1.
+                int i = longitudDelPatron;
+                if (tablaD1.containsKey(texto[d - 1])){
+                    i = tablaD1.get(texto[d - 1]); //Variable auxiliar con el avance según la Tabla D1.
+                }
                 if (e >= d + i) {
                     e++; //Si la siguiente posición en el texto no es mayor, la posición actual en el texto avanza en 1.
                 } else {
@@ -56,12 +59,8 @@ public class BoyerMoore extends AlgoritmoDeCoindicencias {
 
         HashMap<Character, Integer> tablaD1 = new HashMap<>(); //Estructura con la Tabla de D1.
 
-        for (int i = 0; i < longitudDelTexto; i++) {
-            tablaD1.put(texto[i], longitudDelPatron); //Valor para carácteres en el texto.
-        }
-
         for (int i = 0; i < longitudDelPatron; i++) {
-            tablaD1.replace(patron[i], longitudDelPatron - 1 - i); //Valor para carácteres en el patrón.
+            tablaD1.put(patron[i], longitudDelPatron - 1 - i); //Valor para carácteres en el patrón.
         }
         return tablaD1;
     }

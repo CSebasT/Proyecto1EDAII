@@ -32,7 +32,10 @@ public class BuscadorPatrones {
                     }
                 }
             }
-            resultado = "Para el algoritmo " + algoritmo + " con el patron \"" + patron + "\" se encontraron " + totalCoincidencias + " coincidencias y la búsqueda tomó " +String.format("%.4f",tiempo)+ " milisegundos. " + coincidencias;
+            resultado = "Para el algoritmo " + algoritmo + " con el patron \"" + patron + "\" se encontraron " + totalCoincidencias + " coincidencias y la búsqueda tomó " +String.format("%.4f",tiempo)+ " milisegundos. ";
+            if (!coincidencias.equals("")){
+                resultado += "Las coincidencias encontradas fueron las siguientes:" + coincidencias;
+            }
             resultados.add(new Resultado(algoritmo.getNombre(), resultado, patron, tiempo));
         }
         return resultados;
