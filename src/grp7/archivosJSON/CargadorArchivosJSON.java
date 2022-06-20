@@ -6,17 +6,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.nio.charset.StandardCharsets;
 
 public class CargadorArchivosJSON {
+    private ArrayList<String> arregloPatrones;
+    private String texto;
 
-    public ArrayList<String> cargarArchivoPatronesJSON(File archivoPatrones) throws IOException {
-        ArrayList<String> arregloPatrones = new ArrayList<>();
+    public CargadorArchivosJSON(File archivoPatrones) throws IOException {
+        arregloPatrones = new ArrayList<>();
+        texto = "";
+        cargarArchivoJSON(archivoPatrones);
+    }
+
+    private void cargarArchivoJSON(File archivoPatrones) throws IOException {
         String contenido = "";
         FileInputStream fis = new FileInputStream(archivoPatrones);
         //Mediante el InputStreamReader s leen archivos en codificación UTF-8.
@@ -27,11 +31,19 @@ public class CargadorArchivosJSON {
             contenido += linea + "\n";
         }
         JSONObject obj = new JSONObject(contenido);
-        JSONArray arregloPatronesJSON = obj.getJSONArray("arregloPatrones");
+        JSONArray arregloPatronesJSON = obj.getJSONArray("patrones");
         for (int i = 0; i < arregloPatronesJSON.length(); i++) {
-            arregloPatrones.add(arregloPatronesJSON.getJSONObject(i).getString("patron"));
+            arregloPatrones.add(arregloPatronesJSON.getString(i));
         }
+        texto = obj.getString("texto");
+    }
+    
+     public ArrayList<String> getArregloPatrones() {
         return arregloPatrones;
+    }
+
+    public String getTexto() {
+        return texto;
     }
 
 }

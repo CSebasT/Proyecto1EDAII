@@ -22,7 +22,7 @@ public class MainGui extends javax.swing.JFrame {
 
     DefaultListModel patrones = new DefaultListModel();
     BuscadorPatrones buscador = new BuscadorPatrones();
-    CargadorArchivosJSON cargadorArchivosJSON = new CargadorArchivosJSON();
+    CargadorArchivosJSON cargadorArchivosJSON;
 
     /**
      * Creates new form home
@@ -45,6 +45,7 @@ public class MainGui extends javax.swing.JFrame {
         lblTituloTexto = new javax.swing.JLabel();
         btnLimpiarTexto = new javax.swing.JButton();
         btnCargarArchivoTexto = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         pnlPatrones = new javax.swing.JPanel();
         txtInputPatron = new javax.swing.JTextField();
         scrListaPatronesScroll = new javax.swing.JScrollPane();
@@ -93,6 +94,14 @@ public class MainGui extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(66, 255, 182));
+        jButton1.setText("Cargar Archivo JSON");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarArchivoJSON(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlTextoLayout = new javax.swing.GroupLayout(pnlTexto);
         pnlTexto.setLayout(pnlTextoLayout);
         pnlTextoLayout.setHorizontalGroup(
@@ -100,25 +109,28 @@ public class MainGui extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTextoLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lblTituloTexto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                 .addComponent(btnCargarArchivoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(btnLimpiarTexto)
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap())
             .addComponent(scrTextInputScroll)
         );
         pnlTextoLayout.setVerticalGroup(
             pnlTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTextoLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(pnlTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTituloTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTituloTexto)
                     .addGroup(pnlTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLimpiarTexto)
-                        .addComponent(btnCargarArchivoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCargarArchivoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLimpiarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrTextInputScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 300));
@@ -192,13 +204,13 @@ public class MainGui extends javax.swing.JFrame {
                             .addComponent(txtInputPatron))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPatronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRemoverTodosPatrones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(btnRemoverTodosPatrones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                             .addComponent(btnRemoverPatron, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAgregarPatron, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCargarPatrones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnCargarPatrones, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
                     .addGroup(pnlPatronesLayout.createSequentialGroup()
                         .addComponent(lblTituloPatron)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlPatronesLayout.setVerticalGroup(
@@ -223,7 +235,7 @@ public class MainGui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemoverTodosPatrones))
                     .addComponent(scrListaPatronesScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlPatrones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 600, 300));
@@ -351,23 +363,6 @@ public class MainGui extends javax.swing.JFrame {
         if (elegir == JFileChooser.APPROVE_OPTION) {
             try {
                 File archivo = selectorArchivo.getSelectedFile();
-                //Comprueba la extensión del archivo.
-                String nombreArchivo = archivo.getName();
-                String extension = "";
-                int i = nombreArchivo.lastIndexOf('.');
-                if (i > 0) {
-                    extension = nombreArchivo.substring(i + 1);
-                }
-                //Si el archivo es JSON se tendrá un procesamiento diferente.
-                if (extension.equals("json")) {
-                    ArrayList<String> arregloPatrones = cargadorArchivosJSON.cargarArchivoPatronesJSON(archivo);
-                    if (arregloPatrones != null) {
-                        for (String patron : arregloPatrones) {
-                            patrones.addElement(patron);
-                        }
-                        return;
-                    }
-                }
                 //Procesamiento para cualquier otro tipo de archivo.
                 FileInputStream fis = new FileInputStream(archivo);
                 //Mediante el InputStreamReader s leen archivos en codificación UTF-8.
@@ -423,6 +418,39 @@ public class MainGui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_resolver
 
+    private void cargarArchivoJSON(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarArchivoJSON
+        JFileChooser selectorArchivo = new JFileChooser();
+        int elegir = selectorArchivo.showOpenDialog(this);
+        if (elegir == JFileChooser.APPROVE_OPTION) {
+            try {
+                File archivo = selectorArchivo.getSelectedFile();
+                //Comprueba la extensión del archivo.
+                String nombreArchivo = archivo.getName();
+                String extension = "";
+                int i = nombreArchivo.lastIndexOf('.');
+                if (i > 0) {
+                    extension = nombreArchivo.substring(i + 1);
+                }
+                //Si el archivo es JSON se tendrá un procesamiento diferente.
+                if (extension.equals("json")) {
+                    cargadorArchivosJSON = new CargadorArchivosJSON(archivo);
+                    ArrayList<String> arregloPatrones = cargadorArchivosJSON.getArregloPatrones();
+                    if (arregloPatrones != null) {
+                        for (String patron : arregloPatrones) {
+                            patrones.addElement(patron);
+                        }
+                    }
+                    String texto = cargadorArchivosJSON.getTexto();
+                    txaTextInput.setText(texto);
+                } else{
+                    JOptionPane.showMessageDialog(null, "No se ha ingresado un archivo JSON valido", "Advertencia",2);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_cargarArchivoJSON
+
     /**
      * @param args the command line arguments
      */
@@ -457,6 +485,7 @@ public class MainGui extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkBoyerMoore;
     private javax.swing.JCheckBox chkFuerzaBruta;
     private javax.swing.JCheckBox chkKMP;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblAuxPatronesABuscar;
     private javax.swing.JLabel lblAuxPatronesIngresar;
     private javax.swing.JLabel lblTituloAlgoritmo;
