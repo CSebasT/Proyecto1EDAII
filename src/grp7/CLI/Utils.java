@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 
 public class Utils {
 
-    public static ArrayList<char[]> leerPatrones() {
+    public static ArrayList<String> leerPatrones() {
         int numPatrones;
-        ArrayList<char[]> patrones = new ArrayList<char[]>();
+        ArrayList<String> patrones = new ArrayList<>();
         Scanner leerNumPatrones = new Scanner(System.in);
         Scanner leerPatron = new Scanner(System.in);
         System.out.println("Ingrese el número de Patrones");
@@ -22,8 +22,8 @@ public class Utils {
 
         for (int i = 0; i < numPatrones; i++) {
             System.out.println("Ingrese el patron " + (i + 1));
-            char[] aux = leerPatron.nextLine().toCharArray();
-            patrones.add(aux);
+            //char[] aux = leerPatron.nextLine().toCharArray();
+            patrones.add(leerPatron.nextLine());
         }
         return patrones;
     }
@@ -46,7 +46,7 @@ public class Utils {
     }
 
     public static void mostrarResultados(String nombreAlgoritmo, int numCoincidencia, ArrayList<Integer> lineasCoincidencia, ArrayList<ArrayList<Integer>> arrayPosiciones, ArrayList<char[]> patronBuscado, double tiempoTotal) {
-
+        
         System.out.println("Para el algoritmo " + nombreAlgoritmo + " se encontraron " + numCoincidencia
                 + " coincidencias y la busqueda tomó " + tiempoTotal + " milisegundos");
 
