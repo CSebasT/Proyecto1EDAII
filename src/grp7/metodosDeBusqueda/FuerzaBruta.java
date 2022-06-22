@@ -4,14 +4,17 @@ import java.util.ArrayList;
 
 public class FuerzaBruta extends AlgoritmoDeCoindicencias {
 
-    /*
-    ** Método para buscar las coincidencias de un patrón en un texto dado, mediante Fuerza Bruta
+    /**
+     * Constructor del algoritmo Fuerza Bruta
      */
     public FuerzaBruta() {
-        super();
         this.nombre = "Fuerza Bruta";
     }
 
+    /**
+     * Método para buscar las coincidencias de un patrón en un texto dado, mediante Fuerza Bruta
+     * Sobreescribe el método resolver().
+     */
     @Override
     public ArrayList<Integer> resolver(char[] texto, char[] patron) {
         int longitudDelTexto = texto.length;

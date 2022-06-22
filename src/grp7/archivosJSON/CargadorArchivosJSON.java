@@ -11,19 +11,28 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class CargadorArchivosJSON {
+
     private ArrayList<String> arregloPatrones;
     private String texto;
 
+    /**
+     * Constructor de la clase auxiliar para cargar archivos JSON.
+     */
     public CargadorArchivosJSON(File archivoPatrones) throws IOException {
         arregloPatrones = new ArrayList<>();
         texto = "";
         cargarArchivoJSON(archivoPatrones);
     }
 
+    /**
+     * Abre el archivo y obtiene el texto y los patrones que contiene.
+     *
+     * @param archivoPatrones archivo que se procesará.
+     */
     private void cargarArchivoJSON(File archivoPatrones) throws IOException {
         String contenido = "";
         FileInputStream fis = new FileInputStream(archivoPatrones);
-        //Mediante el InputStreamReader s leen archivos en codificación UTF-8.
+        //Mediante el InputStreamReader se leen archivos en codificación UTF-8.
         InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(isr);
         String linea;
@@ -33,12 +42,14 @@ public class CargadorArchivosJSON {
         JSONObject obj = new JSONObject(contenido);
         JSONArray arregloPatronesJSON = obj.getJSONArray("patrones");
         for (int i = 0; i < arregloPatronesJSON.length(); i++) {
+            //Obtiene el arreglo de patrones.
             arregloPatrones.add(arregloPatronesJSON.getString(i));
         }
+        //Obtiene el texto.
         texto = obj.getString("texto");
     }
-    
-     public ArrayList<String> getArregloPatrones() {
+
+    public ArrayList<String> getArregloPatrones() {
         return arregloPatrones;
     }
 

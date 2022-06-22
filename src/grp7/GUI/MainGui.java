@@ -1,6 +1,7 @@
 package grp7.GUI;
 
 import grp7.archivosJSON.CargadorArchivosJSON;
+import grp7.metodosDeBusqueda.*;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -8,21 +9,18 @@ import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-import java.nio.charset.StandardCharsets;
-
-import grp7.metodosDeBusqueda.*;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 
 public class MainGui extends javax.swing.JFrame {
-
-    DefaultListModel patrones = new DefaultListModel();
-    BuscadorPatrones buscador = new BuscadorPatrones();
-    CargadorArchivosJSON cargadorArchivosJSON;
+    private DefaultListModel patrones = new DefaultListModel();
+    private BuscadorPatrones buscador = new BuscadorPatrones();
+    private CargadorArchivosJSON cargadorArchivosJSON;
 
     /**
      * Creates new form home
@@ -45,7 +43,7 @@ public class MainGui extends javax.swing.JFrame {
         lblTituloTexto = new javax.swing.JLabel();
         btnLimpiarTexto = new javax.swing.JButton();
         btnCargarArchivoTexto = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCargarArchivoJSON = new javax.swing.JButton();
         pnlPatrones = new javax.swing.JPanel();
         txtInputPatron = new javax.swing.JTextField();
         scrListaPatronesScroll = new javax.swing.JScrollPane();
@@ -94,9 +92,9 @@ public class MainGui extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(66, 255, 182));
-        jButton1.setText("Cargar Archivo JSON");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCargarArchivoJSON.setBackground(new java.awt.Color(66, 255, 182));
+        btnCargarArchivoJSON.setText("Cargar Archivo JSON");
+        btnCargarArchivoJSON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarArchivoJSON(evt);
             }
@@ -114,7 +112,7 @@ public class MainGui extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(btnLimpiarTexto)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnCargarArchivoJSON)
                 .addContainerGap())
             .addComponent(scrTextInputScroll)
         );
@@ -127,7 +125,7 @@ public class MainGui extends javax.swing.JFrame {
                     .addGroup(pnlTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCargarArchivoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnLimpiarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCargarArchivoJSON, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrTextInputScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -208,9 +206,7 @@ public class MainGui extends javax.swing.JFrame {
                             .addComponent(btnRemoverPatron, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAgregarPatron, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCargarPatrones, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
-                    .addGroup(pnlPatronesLayout.createSequentialGroup()
-                        .addComponent(lblTituloPatron)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblTituloPatron))
                 .addContainerGap())
         );
         pnlPatronesLayout.setVerticalGroup(
@@ -309,16 +305,18 @@ public class MainGui extends javax.swing.JFrame {
         int elegir = selectorArchivo.showOpenDialog(this);
         if (elegir == JFileChooser.APPROVE_OPTION) {
             try {
+                //Abre el Archivo
                 File archivo = selectorArchivo.getSelectedFile();
                 String texto = "";
                 FileInputStream fis = new FileInputStream(archivo);
-                //Mediante el InputStreamReader s leen archivos en codificación UTF-8 (incluye caracteres no ASCII).
+                //Mediante el InputStreamReader se leen archivos en codificación UTF-8 (incluye caracteres no ASCII).
                 InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
                 String linea;
                 while ((linea = br.readLine()) != null) {
                     texto += linea + "\n";
                 }
+                 //Establece el texto
                 txaTextInput.setText(texto);
 
             } catch (IOException e) {
@@ -362,14 +360,15 @@ public class MainGui extends javax.swing.JFrame {
         int elegir = selectorArchivo.showOpenDialog(this);
         if (elegir == JFileChooser.APPROVE_OPTION) {
             try {
+                //Abre el Archivo
                 File archivo = selectorArchivo.getSelectedFile();
-                //Procesamiento para cualquier otro tipo de archivo.
                 FileInputStream fis = new FileInputStream(archivo);
-                //Mediante el InputStreamReader s leen archivos en codificación UTF-8.
+                //Mediante el InputStreamReader se leen archivos en codificación UTF-8.
                 InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
                 String valor;
                 while ((valor = br.readLine()) != null) {
+                    //Establece los P+patrones
                     patrones.addElement(valor);
                 }
             } catch (IOException e) {
@@ -423,6 +422,7 @@ public class MainGui extends javax.swing.JFrame {
         int elegir = selectorArchivo.showOpenDialog(this);
         if (elegir == JFileChooser.APPROVE_OPTION) {
             try {
+                //Abre el Archivo
                 File archivo = selectorArchivo.getSelectedFile();
                 //Comprueba la extensión del archivo.
                 String nombreArchivo = archivo.getName();
@@ -437,10 +437,12 @@ public class MainGui extends javax.swing.JFrame {
                     ArrayList<String> arregloPatrones = cargadorArchivosJSON.getArregloPatrones();
                     if (arregloPatrones != null) {
                         for (String patron : arregloPatrones) {
+                            //Establece los patrones
                             patrones.addElement(patron);
                         }
                     }
                     String texto = cargadorArchivosJSON.getTexto();
+                    //Establece el texto
                     txaTextInput.setText(texto);
                 } else{
                     JOptionPane.showMessageDialog(null, "No se ha ingresado un archivo JSON valido", "Advertencia",2);
@@ -476,6 +478,7 @@ public class MainGui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPatron;
+    private javax.swing.JButton btnCargarArchivoJSON;
     private javax.swing.JButton btnCargarArchivoTexto;
     private javax.swing.JButton btnCargarPatrones;
     private javax.swing.JButton btnLimpiarTexto;
@@ -485,7 +488,6 @@ public class MainGui extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkBoyerMoore;
     private javax.swing.JCheckBox chkFuerzaBruta;
     private javax.swing.JCheckBox chkKMP;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblAuxPatronesABuscar;
     private javax.swing.JLabel lblAuxPatronesIngresar;
     private javax.swing.JLabel lblTituloAlgoritmo;

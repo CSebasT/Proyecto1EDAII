@@ -1,17 +1,17 @@
 package grp7.metodosDeBusqueda;
 
 public class Resultado implements Comparable<Resultado> {
+    private double tiempoEjecucion;
+    private String resumenResultado;
+    private String patron;
+    private String nombreAlgoritmo;
 
-    double tiempoEjecucion;
-    String resultado;
-    String patron;
-    String nombreAlgoritmo;
-
-    public Resultado(){};
-    
-    public Resultado(String algoritmo, String resultado, String patron, double tiempoEjecucion) {
+    /**
+     * Constructor del Resultado.
+     */
+    public Resultado(String algoritmo, String resumenResultado, String patron, double tiempoEjecucion) {
         this.tiempoEjecucion = tiempoEjecucion;
-        this.resultado = resultado;
+        this.resumenResultado = resumenResultado;
         this.patron = patron;
         this.nombreAlgoritmo = algoritmo;
     }
@@ -28,8 +28,8 @@ public class Resultado implements Comparable<Resultado> {
         return nombreAlgoritmo;
     }
     
-    public String getResultado() {
-        return resultado;
+    public String getResumenResultado() {
+        return resumenResultado;
     }
 
     @Override
@@ -37,8 +37,12 @@ public class Resultado implements Comparable<Resultado> {
         return (int) (this.tiempoEjecucion*1000000 - resultado.getTiempoEjecucion()*1000000);
     }
     
-    @Override
-    public String toString() {
+    /**
+     * 
+     * @return un String que identifica el Resultado como el mejor resultado
+     * para la busqueda.
+     */
+    public String obtenerComoMejorResultado() {
         return "Para buscar el patrón \""+patron+"\" el mejor algoritmo fue "+nombreAlgoritmo+".";
     }
 

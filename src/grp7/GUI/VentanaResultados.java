@@ -15,12 +15,14 @@ public class VentanaResultados extends javax.swing.JFrame {
         setTitle("Resultado \"" + resultados.get(0).getPatron() + "\"");
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         String textoDeLaVentana = "";
+        //Mostrar los resultados.
         for (Resultado resultado : resultados) {
-            textoDeLaVentana += resultado.getResultado() + "\n\n";
+            textoDeLaVentana += resultado.getResumenResultado() + "\n\n";
         }
+        //Mostrar la comparación entre resultados.
         if (resultados.size()>1) {
             Collections.sort(resultados);
-            textoDeLaVentana += resultados.get(0).toString();
+            textoDeLaVentana += resultados.get(0).obtenerComoMejorResultado();
         }
         txpResultado.setText(textoDeLaVentana);
     }

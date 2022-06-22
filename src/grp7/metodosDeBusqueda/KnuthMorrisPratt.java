@@ -1,28 +1,31 @@
 package grp7.metodosDeBusqueda;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class KnuthMorrisPratt extends AlgoritmoDeCoindicencias {
 
+    /**
+     * Constructor del algoritmo KnuthMorrisPratt.
+     */
     public KnuthMorrisPratt() {
         this.nombre = "KMP";
     }
 
+    /**
+     * Método para buscar las coincidencias de un patrón en un texto dado, mediante KMP.
+     * Sobreescribe el método resolver().
+     */
     @Override
     public ArrayList<Integer> resolver(char[] texto, char[] patron) {
-        /*
-        ** Método para buscar las coincidencias de un patrón en un texto dado, mediante KMP
-         */
         int longitudDelTexto = texto.length;
         int longitudDelPatron = patron.length;
-        ArrayList<Integer> posicionesCoincidencias = new ArrayList<>(); //Estructura con posiciónes de las coincidencias encontradas.
+        ArrayList<Integer> posicionesCoincidencias = new ArrayList<>(); //Posiciónes de las coincidencias encontradas.
 
         if (longitudDelPatron == 0) {
             return null; //Retorna null si el patrón se encuentra vacío.
         }
 
-        int[] tablaFallo = calcularFuncionFallo(patron); //Variable con la Tabla de Fallo.
+        int[] tablaFallo = calcularFuncionFallo(patron); //Obtiene la Tabla de Fallo.
         int d = 0; //Variable auxiliar para recorrer el texto.
         int c = 0; //Variable auxiliar para recorrer el patrón.
 
@@ -43,8 +46,11 @@ public class KnuthMorrisPratt extends AlgoritmoDeCoindicencias {
         return posicionesCoincidencias;
     }
 
-    /*
-    ** Método para calcular los valores en la Tabla de Fallo.
+    /**
+     * Calcula los valores en la Tabla de Fallo.
+     * 
+     * @param patron el patrón que se buscará.
+     * @return un arrelglo de enteros que representa la Tabla de Fallo.
      */
     public static int[] calcularFuncionFallo(char[] patron) {
         int longitudDelPatron = patron.length;

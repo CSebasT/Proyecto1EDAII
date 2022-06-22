@@ -55,7 +55,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="btnLimpiarTexto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCargarArchivoJSON" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="scrTextInputScroll" alignment="0" max="32767" attributes="0"/>
@@ -70,7 +70,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnCargarArchivoTexto" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="btnLimpiarTexto" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="btnCargarArchivoJSON" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -126,7 +126,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cargarArchivoTexto"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnCargarArchivoJSON">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="b6" green="ff" red="42" type="rgb"/>
@@ -172,10 +172,7 @@
                               <Component id="btnCargarPatrones" alignment="0" pref="167" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="lblTituloPatron" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="lblTituloPatron" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
