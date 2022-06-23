@@ -49,7 +49,7 @@ public class UtilsCli {
                 InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
                 br = new BufferedReader(isr);
                 while ((linea = br.readLine()) != null) {
-                    System.out.println(linea);
+                    //System.out.println(linea);
                     texto += linea + "\n";
                 }
             } catch (Exception e) {
