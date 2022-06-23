@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-public class Utils {
+public class UtilsCli {
 
     /**
      * Retorna un ArrayList con los patrones ingresados por consola.

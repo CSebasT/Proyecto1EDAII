@@ -11,12 +11,12 @@ public class MainCli {
         BuscadorPatrones buscador = new BuscadorPatrones();
         ArrayList<Resultado> resultados = new ArrayList<>();
         //Elección de los algoritmos
-        ArrayList<AlgoritmoDeCoindicencias> algoritmos = Utils.menu();
+        ArrayList<AlgoritmoDeCoindicencias> algoritmos = UtilsCli.menu();
         //Elección de los patrones
-        ArrayList<String> listaPatrones = Utils.leerPatrones();
+        ArrayList<String> listaPatrones = UtilsCli.leerPatrones();
         System.out.println("Los patrones ha buscar son: " + listaPatrones);
         //Carga del archivo de Texto
-        String texto = Utils.leerArchivo();
+        String texto = UtilsCli.leerArchivo();
         //Impresión de los resultados por cada patrón.
         for (String patron : listaPatrones) {
             resultados.addAll(buscador.getResultado(algoritmos, texto, patron));
