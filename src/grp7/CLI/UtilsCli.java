@@ -1,16 +1,28 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package grp7.CLI;
 
-import grp7.metodosDeBusqueda.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import grp7.metodosDeBusqueda.AlgoritmoDeCoindicencias;
+import grp7.metodosDeBusqueda.BoyerMoore;
+import grp7.metodosDeBusqueda.FuerzaBruta;
+import grp7.metodosDeBusqueda.KnuthMorrisPratt;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Scanner;
 
+/**
+ *
+ * @author Jhon
+ */
 public class UtilsCli {
-
+    
     /**
      * Retorna un ArrayList con los patrones ingresados por consola.
      */
